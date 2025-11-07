@@ -31,5 +31,6 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.SYNC_TOKEN }} # Token with Read/Write for Pull Requests
-          labels: sync-js # A comma or newline separated list of labels.
+          path: dest # Relative path under $GITHUB_WORKSPACE to the repo
+          labels: sync-js # A comma or newline separated list of labels
           assignees: mike94100 # A comma or newline separated list of assignees (GitHub usernames)
