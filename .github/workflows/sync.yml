@@ -11,12 +11,25 @@ jobs:
     steps:
       - name: Checkout destination repo
         uses: actions/checkout@v4
-
-      - name: File sync from source repo
-        uses: BetaHuhn/repo-file-sync-action@v1
         with:
-          GH_PAT: ${{ secrets.SYNC_TOKEN }} # GitHub Personal Access Token
-          CONFIG_PATH: '.github/sync-config.yml' # Sync configuration file
-          BRANCH_PREFIX: 'repo-sync/' # New branch prefix
-          IS_FINE_GRAINED: true # Label GH_PAT as a fine grained token
-          ASSIGNEES: mike94100 # Users to assign to the pull request. Defaults to none
+          path: dest
+          
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+        with:
+          repository: 'marcrobledo/RomPatcher.js'
+          path: source
+          
+      - name: Copy the folder
+        run: |
+          # Update existing files and remove files no longer in the source
+          rsync -av --delete source/rom-patcher-js/ dest/rom-patcher-js/
+          rsync -av --delete source/LICENSE dest/LICENSE
+          rsync -av --delete source/index_template.html dest/index_template.html
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.SYNC_TOKEN }} # Token with Read/Write for Pull Requests
+          labels: sync-js # A comma or newline separated list of labels.
+          assignees: mike94100 # A comma or newline separated list of assignees (GitHub usernames)
