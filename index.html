@@ -20,10 +20,25 @@
 					language: 'en', //default: en
 					requireValidation: false
 				}, {
-					file: './my_patch.zip', //zip containing patches
-					name: 'Game (English v1.0)',
-					description: 'English fan translation for Game',
-					outputName: 'Game (English v1.0)', //patched ROM name
+					file: '/patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', //zip containing patches
+					patches: [ //information about patches inside the zip
+						{
+							file: '/Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', //required, must match the patch file name in the zip
+							name: 'Pokémon Crystal Legacy (Latest)', //patch name that will appear in the dropdown button
+							inputCrc32: 'ee6f5188', //CRC32 checksum validation
+							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', //MD5 checksum validation
+							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', //short description that will appear when user picks this patch
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' //patched ROM name
+						},
+						{
+							file: '/Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps', //required, must match the patch file name in the zip
+							name: 'Pokémon Crystal (Rev 1) Legacy (Latest)', //patch name that will appear in the dropdown button
+							inputCrc32: '3358e30a', //CRC32 checksum validation
+							inputMd5: '301899b8087289a6436b0a241fbbb474', //MD5 checksum validation
+							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.', //short description that will appear when user picks this patch
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' //patched ROM name
+						}
+					]
 				});
 			} catch (err) {
 				var message = err.message;
