@@ -1,0 +1,29 @@
+name: Copy From RomPatcherJS
+
+on:
+  schedule:
+    - cron: '0 3 1/ * *' # Trigger at 03:00 every day
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  copy-folder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination repo
+        uses: actions/checkout@v4
+
+      - name: Sync from source repo
+        uses: BetaHuhn/repo-file-sync-action@v1
+        with:
+          repository: 'marcrobledo/RomPatcher.js'
+          ref: master # Branch to copy from
+          # token: ${{ secrets.SYNC_TOKEN }} # Public Repo doesn't need a token
+          path: source
+
+      - name: File sync from source repo
+        uses: BetaHuhn/repo-file-sync-action@v1
+        with:
+          GH_PAT: ${{ secrets.SYNC_TOKEN }} # GitHub Personal Access Token
+          CONFIG_PATH: '.github/sync-config.yml' # Sync configuration file
+          IS_FINE_GRAINED: true # Label GH_PAT as a fine grained token
+          ASSIGNEES: mike94100 # Users to assign to the pull request. Defaults to none
