@@ -2,11 +2,9 @@
 <html translate="no">
 
 <head>
-	<title>Rom Patcher JS - Custom patcher template</title>
+	<title>Rom Patcher JS - GitHub Pages Sample</title>
 	<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-
-
 
 	<!-- Rom Patcher JS needed CSS/JS files -->
 	<link type="text/css" rel="stylesheet" href="./rom-patcher-js/style.css" media="all" />
@@ -16,27 +14,50 @@
 	<script type="text/javascript">
 		window.addEventListener('load', function (evt) {
 			try {
+				const CRC32_REV0 = 0xee6f5188; // Pokemon Crystal (USA) CRC32 Hash
+				const CRC32_REV1 = 0x3358e30a; // Pokemon Crystal (USA) (Rev 1) CRC32 Hash
+				const CRC32_INVALID = [0x270c4ecc, // Pocket Monsters - Crystal (Japan) CRC32 Hash
+									   0xbb6dd80c]; // Pokemon Crystal (Australia) CRC32 Hash
 				RomPatcherWeb.initialize({
-					language: 'en', //default: en
-					requireValidation: false
-				}, {
-					file: '/patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', //zip containing patches
-					patches: [ //information about patches inside the zip
+					language: 'en', // English
+					requireValidation: false, // Allow applying patch if the ROM is invalid
+					allowDropFiles: true, // Allow basic drag and drop support
+					onloadrom: function (romFile) {
+						const CRC32 = romFile.hashCRC32(); // Provided ROM file hash
+						// Load patch for Rev 0 if hash matches
+						if (CRC32 === CRC32_REV0)
+							RomPatcherWeb.pickEmbededFile('Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps');
+						// Load patch for Rev 1 if hash matches
+						else if (CRC32 === CRC32_REV1)
+							RomPatcherWeb.pickEmbededFile('Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps');
+					},
+					onvalidaterom: function (romFile, isRomValid) {
+						const CRC32 = romFile.hashCRC32();
+						if (!isRomValid && CRC32_INVALID.indexOf(CRC32) !== -1) // Error message for known invalid ROM hash
+							RomPatcherWeb.setErrorMessage('This is a known invalid ROM. This patch will not function properly.');
+						else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1) // Error message for unknown ROM hash
+							RomPatcherWeb.setErrorMessage('This is an unknown ROM. This patch will likely not function properly.');
+					},
+					{
+					file: 'patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
+					patches: [ // Info about patches contained in .zip
 						{
-							file: '/Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', //required, must match the patch file name in the zip
-							name: 'Pokémon Crystal Legacy (Latest)', //patch name that will appear in the dropdown button
-							inputCrc32: 'ee6f5188', //CRC32 checksum validation
-							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', //MD5 checksum validation
-							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', //short description that will appear when user picks this patch
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' //patched ROM name
+							file: 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', // Required, must match the file path in the .zip
+							name: 'Pokémon Crystal Legacy (Latest)', // Patch name that appears in dropdown
+							inputCrc32: 'ee6f5188', // CRC32 checksum validation
+							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', // MD5 checksum validation
+							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', // Description that appears when patch is selected
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)', // Patched ROM file name
+							//outputExtension: 'gba' // Patched ROM file extension
 						},
 						{
-							file: '/Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps', //required, must match the patch file name in the zip
-							name: 'Pokémon Crystal (Rev 1) Legacy (Latest)', //patch name that will appear in the dropdown button
-							inputCrc32: '3358e30a', //CRC32 checksum validation
-							inputMd5: '301899b8087289a6436b0a241fbbb474', //MD5 checksum validation
-							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.', //short description that will appear when user picks this patch
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' //patched ROM name
+							file: 'Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps',
+							name: 'Pokémon Crystal Legacy (Latest) for Rev 1',
+							inputCrc32: '3358e30a',
+							inputMd5: '301899b8087289a6436b0a241fbbb474',
+							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)',
+							//outputExtension: 'gba'
 						}
 					]
 				});
@@ -52,15 +73,13 @@
 	</script>
 </head>
 
+	
+
 <body style="font: 15px 'Open Sans', sans-serif; background-color: #31343a; color: #e4e4e6;">
 	<header style="text-align: center">
 		<h1>Rom Patcher JS</h1>
 		<p>
-			This is a template that shows off Rom Patcher JS embeding capabilities. You can use this template to embed
-			Rom Patcher JS in your website.<br />
-			Take a look at the <a
-				href="https://github.com/marcrobledo/RomPatcher.js/blob/master/custom_patcher_template.html"
-				target="_blank">sourcecode</a> to see how it's done.
+			This is a sample that shows off Rom Patcher JS embedded in a GitHub page.
 		</p>
 	</header>
 
@@ -122,11 +141,68 @@
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 		</div>
 	</div>
-
+	
 	<div id="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
 				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
 	</div>
+	<div id="github-rompatch" class="text-center">
+		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
+				src="images/github-light.webp" loading="lazy" />cRz-Shadows/Pokemon_Crystal_Legacy"</a>
+	</div>
+	<div id="githubpages-sample" class="text-center">
+		<a href="https://github.com/mike94100/RomPatcher-GitHubPages-Sample" target="_blank"><img
+				src="images/github-light.webp" loading="lazy" />mike94100/RomPatcher-GitHubPages-Sample</a>
+	</div>
+	<div id="reddit-pokemonromhacks class="text-center">
+		<a href="https://www.reddit.com/r/PokemonROMhacks/" target="_blank"><img
+				src="images/reddit.webp" loading="lazy" />r/PokemonROMhacks</a>
+	</div>
+	<div id="discord" class="text-center">
+		<a href="https://discord.com" target="_blank"><img
+				src="images/discord.webp" loading="lazy" />Discord</a>
+	</div>
+	<div id="pokecommunity" class="text-center">
+		<a href="https://www.pokecommunity.com/forums/rom-hacks-showcase.184/" target="_blank"><img
+				src="images/pokecommunity.webp" loading="lazy" />Pokécommunity</a>
+	</div>
+	<div id="international-games-database class="text-center">
+		<a href="https://www.igdb.com/games/pokemon-crystal-legacy" target="_blank"><img
+				src="images/igdb.webp" loading="lazy" />IGDB</a>
+	</div>
+	<div id="retroachievements" class="text-center">
+		<a href="https://retroachievements.org/game/31952" target="_blank"><img
+				src="images/retroachievements.webp" loading="lazy" />Retroachievements</a>
+	</div>
+	<div id="hasheous" class="text-center">
+		<a href="https://hasheous.org/index.html?page=dataobjectdetail&type=game&id=263015" target="_blank"><img
+				src="images/hasheous.webp" loading="lazy" />Hasheous</a>
+	</div>
 </body>
-
+	
 </html>
+
+<!-- Use this to change web page display based on chosen patch file (or provided rom, etc) -->
+<!-- RomPatcher.initialize(
+	{
+		onloadpatch: function (patchFile, embededPatchInformation) {
+			if (patchFile.getName() === 'legend_of_mana_sword_amanda') {
+				document.getElementById('screenshots_amanda').style.display = 'block';
+				document.getElementById('screenshots_duke').style.display = 'none';
+			}
+			else if(patchFile.getName() === 'legend_of_mana_sword_duke'){
+				document.getElementById('screenshots_amanda').style.display = 'none';
+				document.getElementById('screenshots_duke').style.display = 'block';
+			}
+		}
+	}, -->
+
+<!-- Use setEmbededPatches to switch patches available. -->
+<!-- For example, a different set of Patches for Pokemon Yellow, Crystal, and Emerald in one link (in which case it should be in "onloadrom"). -->
+<!-- RomPatcherWeb.setEmbededPatches({
+	file: 'other_patches.zip',
+	name: 'Other patches',
+	patches: [
+		// 
+	]
+});*/ -->
