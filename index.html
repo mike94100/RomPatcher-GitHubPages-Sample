@@ -23,9 +23,6 @@
 				const CRC32_REV0 = ee6f5188; // Pokemon Crystal (USA)
 				const CRC32_REV1 = 3358e30a; // Pokemon Crystal (USA) (Rev 1)
 				const CRC32_INVALID = [270c4ecc, bb6dd80c]; // Japan, Aus
-				// Paths internal to .zip file for each patch
-				const PATCH_PATH_REV0 = 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps'; // Rev 0
-				const PATCH_PATH_REV1 = 'Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps'; // Rev 1
 				RomPatcherWeb.initialize({
 					language: 'en', // English
 					requireValidation: false, // Allow applying patch if the ROM is invalid
@@ -34,10 +31,10 @@
 						const CRC32 = romFile.hashCRC32(); // Provided ROM file hash
 						// Load patch for Rev 0 if hash matches
 						if (CRC32 === CRC32_REV0)
-							RomPatcherWeb.pickEmbededFile(PATCH_PATH_REV0);
+							RomPatcherWeb.pickEmbededFile('Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps';
 						// Load patch for Rev 1 if hash matches
 						else if (CRC32 === CRC32_REV1)
-							RomPatcherWeb.pickEmbededFile(PATCH_PATH_REV1);
+							RomPatcherWeb.pickEmbededFile('Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps';
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const CRC32 = romFile.hashCRC32();
@@ -50,7 +47,7 @@
 					file: './patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
 					patches: [ // Info about patches contained in .zip
 						{
-							file: PATCH_PATH_REV0, // Required, must match the file path in the .zip
+							file: 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', // Required, must match the file path in the .zip
 							name: 'Pokémon Crystal Legacy (Latest)', // Patch name that appears in dropdown
 							inputCrc32: CRC32_REV0, // CRC32 checksum validation
 							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', // MD5 checksum validation
@@ -59,7 +56,7 @@
 							//outputExtension: 'gba' // Patched ROM file extension
 						},
 						{
-							file: PATCH_PATH_REV1,
+							file: 'Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps',
 							name: 'Pokémon Crystal Legacy (Latest) for Rev 1',
 							inputCrc32: CRC32_REV1,
 							inputMd5: '301899b8087289a6436b0a241fbbb474',
