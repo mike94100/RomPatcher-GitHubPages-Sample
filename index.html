@@ -16,13 +16,13 @@
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
 		window.addEventListener('load', function (evt) {
+			// Patch information
+			const OUTPUT_NAME = 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' // Name of the output ROM file
+			// Known CRC32 hashes
+			const CRC32_REV0 = ee6f5188; // Pokemon Crystal (USA)
+			const CRC32_REV1 = 3358e30a; // Pokemon Crystal (USA) (Rev 1)
+			const CRC32_INVALID = [270c4ecc, bb6dd80c]; // Japan, Aus
 			try {
-				// Patch information
-				const OUTPUT_NAME = 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' // Name of the output ROM file
-				// Known CRC32 hashes
-				const CRC32_REV0 = ee6f5188; // Pokemon Crystal (USA)
-				const CRC32_REV1 = 3358e30a; // Pokemon Crystal (USA) (Rev 1)
-				const CRC32_INVALID = [270c4ecc, bb6dd80c]; // Japan, Aus
 				RomPatcherWeb.initialize({
 					language: 'en', // English
 					requireValidation: false, // Allow applying patch if the ROM is invalid
