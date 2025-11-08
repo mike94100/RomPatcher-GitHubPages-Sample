@@ -44,25 +44,22 @@
 							RomPatcherWeb.setErrorMessage('This is an unknown ROM. This patch will likely not function properly.');
 					}
 				}, {
-					file: 'patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
-					patches: [ // Info about patches contained in .zip
-						{
-							file: 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', // Required, must match the file path in the .zip
-							name: 'Pokémon Crystal Legacy (Latest)', // Patch name that appears in dropdown
-							inputCrc32: 'ee6f5188', // CRC32 checksum validation
-							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', // MD5 checksum validation
-							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', // Description that appears when patch is selected
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' // Patched ROM file name
-						},
-						{
-							file: 'Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps',
-							name: 'Pokémon Crystal Legacy (Latest) for Rev 1',
-							inputCrc32: '3358e30a',
-							inputMd5: '301899b8087289a6436b0a241fbbb474',
-							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'
-						}
-					]
+					file: './patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
+					patches: [{ // Info about patches contained in .zip
+						file: 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', // Required, must match the file path in the .zip
+						name: 'Pokémon Crystal Legacy (Latest)', // Patch name that appears in dropdown
+						inputCrc32: CRC32_REV0, // CRC32 checksum validation
+						inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', // MD5 checksum validation
+						description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', // Description that appears when patch is selected
+						outputName: OUTPUT_NAME // Patched ROM file name
+					}, {
+						file: 'Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps',
+						name: 'Pokémon Crystal Legacy (Latest) for Rev 1',
+						inputCrc32: CRC32_REV1,
+						inputMd5: '301899b8087289a6436b0a241fbbb474',
+						description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
+						outputName: OUTPUT_NAME
+					}]
 				});
 			} catch (err) {
 				var message = err.message;
@@ -171,10 +168,14 @@
 			<br><font size="3"><strong>Other Information</strong></font></br>
 			Any other relevant information.
 	</div>
-	
+<!-- FOOTER -->
+<footer>
+	<div>
+		<button id="button-settings" class="btn-transparent"><img src="./webapp/icon_settings.svg" loading="lazy" class="icon settings" /> <span data-localize="yes">Settings</span></button>
+	</div>
 	<div id="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
-				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
+				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS v3.2.1</a>
 	</div>
 	<div class="footer-link text-center">
 		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
@@ -208,6 +209,49 @@
 		<a href="https://hasheous.org/index.html?page=dataobjectdetail&type=game&id=263015" target="_blank"><img
 				src="images/hasheous.webp" loading="lazy" />Hasheous</a>
 	</div>
+
+<!-- SETTINGS DIALOG -->
+<dialog id="dialog-settings" class="rom-patcher-dialog">
+	<div class="text-right m-b"><img id="dialog-settings-button-close" src="./webapp/icon_close.svg" loading="lazy" /></div>
+
+	<div class="row m-b">
+		<div><label for="settings-language">Language</label></div>
+		<div class="text-right">
+			<select id="settings-language" class="enabled">
+				<option value="en">English</option>
+				<option value="fr">Français</option>
+				<option value="de">Deutsch</option>
+				<option value="it">Italiano</option>
+				<option value="es">Español</option>
+				<option value="nl">Nederlands</option>
+				<option value="sv">Svenska</option>
+				<option value="ca">Català</option>
+				<option value="ca-va">Valencià</option>
+				<option value="pt-br">Português Brasileiro</option>
+				<option value="ru">Russian</option>
+				<option value="ja">日本語</option>
+				<option value="zh-cn">中文（简体）</option>
+				<option value="zh-tw">中文（正體）</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="row row-lg m-b">
+		<div><label data-localize="yes" for="settings-output-suffix">Use patch name for output</label></div>
+		<div class="text-right"><input type="checkbox" id="settings-output-suffix" class="styled" /></div>
+	</div>
+
+	<div class="row row-lg m-b">
+		<div><label data-localize="yes" for="settings-fix-checksum">Fix ROM checksum</label></div>
+		<div class="text-right"><input type="checkbox" id="settings-fix-checksum" class="styled" /></div>
+	</div>
+
+	<div class="row row-lg">
+		<div><label data-localize="yes" for="settings-light-theme">Light theme</label></div>
+		<div class="text-right"><input type="checkbox" id="settings-light-theme" class="styled" /></div>
+	</div>
+</div>
+
 </body>
 	
 </html>
