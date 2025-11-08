@@ -24,7 +24,6 @@ jobs:
         run: |
           # Update existing files and remove files no longer in the source
           rsync -av --delete source/rom-patcher-js/ dest/rom-patcher-js/
-          rsync -av --delete source/LICENSE dest/LICENSE
           rsync -av --delete source/index_template.html dest/index_template.html
 
       - name: Create Pull Request
