@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
 
 	<!-- Custom CSS-->
-	<link type="text/css" rel="stylesheet" href="customstyle.css" media="all" />
+	<link type="text/css" rel="stylesheet" href="./customstyle.css" media="all" />
 
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
@@ -29,7 +29,7 @@
 						const CRC32 = romFile.hashCRC32(); // Provided ROM file hash
 						// Load patch for Rev 0 if hash matches
 						if (CRC32 === CRC32_REV0)
-							RomPatcherWeb.pickEmbededFile('Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps');
+							RomPatcherWeb.pickEmbededFile('outputnameVersion USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps');
 						// Load patch for Rev 1 if hash matches
 						else if (CRC32 === CRC32_REV1)
 							RomPatcherWeb.pickEmbededFile('Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps');
@@ -42,7 +42,7 @@
 							RomPatcherWeb.setErrorMessage('This is an unknown ROM. This patch will likely not function properly.');
 					}
 				}, {
-					file: 'patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
+					file: './patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
 					patches: [ // Info about patches contained in .zip
 						{
 							file: 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', // Required, must match the file path in the .zip
@@ -50,7 +50,7 @@
 							inputCrc32: 'ee6f5188', // CRC32 checksum validation
 							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', // MD5 checksum validation
 							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', // Description that appears when patch is selected
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)', // Patched ROM file name
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' // Patched ROM file name
 							//outputExtension: 'gba' // Patched ROM file extension
 						},
 						{
@@ -59,7 +59,7 @@
 							inputCrc32: '3358e30a',
 							inputMd5: '301899b8087289a6436b0a241fbbb474',
 							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)',
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'
 							//outputExtension: 'gba'
 						}
 					]
