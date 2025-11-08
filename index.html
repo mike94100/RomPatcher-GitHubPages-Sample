@@ -3,7 +3,7 @@
 
 <head>
 	<title>Rom Patcher JS - GitHub Pages Sample</title>
-	<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 	<!-- Rom Patcher JS needed CSS/JS files -->
@@ -37,8 +37,8 @@
 							RomPatcherWeb.setErrorMessage('This is a known invalid ROM. This patch will not function properly.');
 						else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1) // Error message for unknown ROM hash
 							RomPatcherWeb.setErrorMessage('This is an unknown ROM. This patch will likely not function properly.');
-					},
-					{
+					}
+				}, {
 					file: 'patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
 					patches: [ // Info about patches contained in .zip
 						{
@@ -72,6 +72,31 @@
 		});
 	</script>
 </head>
+
+<!-- Use this to change web page display based on chosen patch file (or provided rom, etc) -->
+<!-- RomPatcher.initialize(
+	{
+		onloadpatch: function (patchFile, embededPatchInformation) {
+			if (patchFile.getName() === 'legend_of_mana_sword_amanda') {
+				document.getElementById('screenshots_amanda').style.display = 'block';
+				document.getElementById('screenshots_duke').style.display = 'none';
+			}
+			else if(patchFile.getName() === 'legend_of_mana_sword_duke'){
+				document.getElementById('screenshots_amanda').style.display = 'none';
+				document.getElementById('screenshots_duke').style.display = 'block';
+			}
+		}
+	}, -->
+
+<!-- Use setEmbededPatches to switch patches available. -->
+<!-- For example, a different set of Patches for Pokemon Yellow, Crystal, and Emerald in one link (in which case it should be in "onloadrom"). -->
+<!-- RomPatcherWeb.setEmbededPatches({
+	file: 'other_patches.zip',
+	name: 'Other patches',
+	patches: [
+		// 
+	]
+});*/ -->
 
 <body style="font: 15px 'Open Sans', sans-serif; background-color: #31343a; color: #e4e4e6;">
 	<header style="text-align: center">
@@ -144,63 +169,38 @@
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
 				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
 				src="images/github-light.webp" loading="lazy" />cRz-Shadows/Pokemon_Crystal_Legacy</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/mike94100/RomPatcher-GitHubPages-Sample" target="_blank"><img
 				src="images/github-light.webp" loading="lazy" />mike94100/RomPatcher-GitHubPages-Sample</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://www.reddit.com/r/PokemonROMhacks/" target="_blank"><img
 				src="images/reddit.webp" loading="lazy" />r/PokemonROMhacks</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://discord.com" target="_blank"><img
 				src="images/discord.webp" loading="lazy" />Discord</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://www.pokecommunity.com/forums/rom-hacks-showcase.184/" target="_blank"><img
 				src="images/pokecommunity.webp" loading="lazy" />Pokécommunity</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://www.igdb.com/games/pokemon-crystal-legacy" target="_blank"><img
 				src="images/igdb.webp" loading="lazy" />IGDB</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://retroachievements.org/game/31952" target="_blank"><img
 				src="images/retroachievements.webp" loading="lazy" />Retroachievements</a>
 	</div>
-	<div id="rom-patcher-powered" class="text-center">
+	<div class="rom-patcher-powered" class="text-center">
 		<a href="https://hasheous.org/index.html?page=dataobjectdetail&type=game&id=263015" target="_blank"><img
 				src="images/hasheous.webp" loading="lazy" />Hasheous</a>
 	</div>
 </body>
 	
 </html>
-
-<!-- Use this to change web page display based on chosen patch file (or provided rom, etc) -->
-<!-- RomPatcher.initialize(
-	{
-		onloadpatch: function (patchFile, embededPatchInformation) {
-			if (patchFile.getName() === 'legend_of_mana_sword_amanda') {
-				document.getElementById('screenshots_amanda').style.display = 'block';
-				document.getElementById('screenshots_duke').style.display = 'none';
-			}
-			else if(patchFile.getName() === 'legend_of_mana_sword_duke'){
-				document.getElementById('screenshots_amanda').style.display = 'none';
-				document.getElementById('screenshots_duke').style.display = 'block';
-			}
-		}
-	}, -->
-
-<!-- Use setEmbededPatches to switch patches available. -->
-<!-- For example, a different set of Patches for Pokemon Yellow, Crystal, and Emerald in one link (in which case it should be in "onloadrom"). -->
-<!-- RomPatcherWeb.setEmbededPatches({
-	file: 'other_patches.zip',
-	name: 'Other patches',
-	patches: [
-		// 
-	]
-});*/ -->
