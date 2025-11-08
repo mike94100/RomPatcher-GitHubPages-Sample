@@ -5,27 +5,27 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300');
 
 /* Footer Links */
-.footer-links {
+.footer-link {
 	margin-top: 16px;
 	font-size: 11px;
 	text-align: center;
 }
 
-.footer-links a {
+.footer-link a {
 	color: #cce;
 	padding: 4px 8px;
 	text-decoration: none;
 	opacity: .25;
 }
 
-.footer-links a>img {
+.footer-link a>img {
 	display: inline-block;
 	height: 16px;
 	vertical-align: middle;
 	margin-right: 4px;
 }
 
-.footer-links a:hover {
+.footer-link a:hover {
 	text-decoration: underline;
 	opacity: 1;
 }
