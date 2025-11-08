@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
 
 	<!-- Custom CSS-->
-	<link type="text/css" rel="stylesheet" href="./customstyle.css" media="all" />
+	<link type="text/css" rel="stylesheet" href="CRC32_REV1customstyle.css" media="all" />
 
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
@@ -31,10 +31,10 @@
 						const CRC32 = romFile.hashCRC32(); // Provided ROM file hash
 						// Load patch for Rev 0 if hash matches
 						if (CRC32 === CRC32_REV0)
-							RomPatcherWeb.pickEmbededFile('Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps';
+							RomPatcherWeb.pickEmbededFile('Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps');
 						// Load patch for Rev 1 if hash matches
 						else if (CRC32 === CRC32_REV1)
-							RomPatcherWeb.pickEmbededFile('Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps';
+							RomPatcherWeb.pickEmbededFile('Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps');
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const CRC32 = romFile.hashCRC32();
