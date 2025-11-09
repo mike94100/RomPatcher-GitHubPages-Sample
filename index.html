@@ -16,10 +16,6 @@
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
 		window.addEventListener('load', function (evt) {
-			// Patch info
-			const AUTHOR_NAME = 'TheSmithPlays'; // Name(s) of the Author(s) included in output file name comma separated 'NAME1, NAME2, NAME3'
-			const PATCH_NAME = 'Pokémon Crystal Legacy'; // Name used for display
-			const PATCH_NAME_CLEAN = 'Pokemon Crystal Legacy'; // Clean name used for output with special characters removed
 			// ROM file hash Info
 			const CRC32_REV0 = 0xee6f5188; // Pokemon Crystal (USA)
 			const MD5_REV0 = '9f2922b235a5eeb78d65594e82ef5dde'; // Pokemon Crystal (USA)
@@ -51,35 +47,51 @@
 					file: './patches.zip', // Path to .zip containing patches
 					patches: [{ // Info about patches contained in .zip
 						file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps', // Required, must match the file name in the .zip
-						name: 'Latest - v1.3.1', // Patch name that appears in dropdown
+						name: '(Latest) Pokémon Crystal Legacy (v1.3.1) Patch for Rev 0', // Patch name that appears in dropdown
 						inputCrc32: CRC32_REV0, // CRC32 checksum validation
 						inputMd5: MD5_REV0, // MD5 checksum validation
 						description: 'Latest patch for Pokémon Crystal (USA) to Pokémon Crystal Legacy v1.3.1.', // Description that appears when patch is selected
 						outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'}, // Patched ROM file name
 						{
 						file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps',
-						name: 'Latest - v1.3.1 - for Rev 1',
+						name: '(Latest) Pokémon Crystal Legacy (v1.3.1) Patch for Rev 1',
 						inputCrc32: CRC32_REV1,
 						inputMd5: MD5_REV1,
 						description: 'Latest patch for Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy v1.3.1.',
-						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.1) (${AUTHOR_NAME}) (Hack)`);}},
+						outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'},
 						{
 						file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.0_Patch.ips',
-						name: 'Legacy - v1.3.0',
+						name: '(Legacy) Pokémon Crystal Legacy (v1.3.0) Patch for Rev 0',
 						inputCrc32: CRC32_REV0,
 						inputMd5: MD5_REV0,
 						description: 'Legacy patch for Pokémon Crystal (USA) to Pokémon Crystal Legacy v1.3.0.',
-						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.0) (${AUTHOR_NAME}) (Hack)`);}},
+						outputName: 'Pokemon Crystal Legacy (Rev v1.3.0) (TheSmithPlays) (Hack)'},
 						{
 						file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.1_Patch.ips',
-						name: 'Legacy - v1.3.0 - for Rev 1',
+						name: '(Legacy) Pokémon Crystal Legacy (v1.3.0) Patch for Rev 1',
 						inputCrc32: CRC32_REV1,
 						inputMd5: MD5_REV1,
 						description: 'Legacy patch for Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy v1.3.0.',
-						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.0) (${AUTHOR_NAME}) (Hack)`);}}
+						outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'}
 					]
 				}
 			);
+
+			const patchDownload = document.getElementById('rom-patcher-button-download');
+			const patchSelect = document.getElementById('rom-patcher-select-patch');
+
+			patchDownload.onclick = () => {
+				const selectedIndex = patchSelect.selectedIndex;
+				if (selectedIndex < 0) return;
+					const patch = patchInfo.patches[selectedIndex];
+					const link = document.createElement('a');
+					link.href = `./patches/${patch.file}`;
+					link.download = patch.file.split('/').pop();
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+			};
+				
 			} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
@@ -108,7 +120,6 @@
 	}, -->
 
 <!-- Use setEmbededPatches to switch patches available. -->
-<!-- For example, a different set of Patches for Pokemon Yellow, Crystal, and Emerald in one link (in which case it should be in "onloadrom"). -->
 <!-- RomPatcherWeb.setEmbededPatches({
 	file: 'other_patches.zip',
 	name: 'Other patches',
@@ -182,6 +193,7 @@
 			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
+			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch</button>
 		</div>
 			<br><font size="3"><strong>Recommended Emulators</strong></font>
 			<br>List Recommended Emulators.
