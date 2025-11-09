@@ -51,31 +51,31 @@
 					file: './patches.zip', // Path to .zip containing patches
 					patches: [{ // Info about patches contained in .zip
 						file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps', // Required, must match the file name in the .zip
-						name: 'Pokémon Crystal Legacy (Latest v1.3.1)', // Patch name that appears in dropdown
+						name: 'Latest - v1.3.1', // Patch name that appears in dropdown
 						inputCrc32: CRC32_REV0, // CRC32 checksum validation
 						inputMd5: MD5_REV0, // MD5 checksum validation
-						description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', // Description that appears when patch is selected
-						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.1) (${AUTHOR_NAME}) (Hack)`);}}, // Patched ROM file name
+						description: 'Latest patch for Pokémon Crystal (USA) to Pokémon Crystal Legacy v1.3.1.', // Description that appears when patch is selected
+						outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'}, // Patched ROM file name
 						{
 						file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps',
-						name: 'Pokémon Crystal Legacy (Latest v1.3.1) for Rev 1',
+						name: 'Latest - v1.3.1 - for Rev 1',
 						inputCrc32: CRC32_REV1,
 						inputMd5: MD5_REV1,
-						description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
+						description: 'Latest patch for Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy v1.3.1.',
 						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.1) (${AUTHOR_NAME}) (Hack)`);}},
 						{
 						file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.0_Patch.ips',
-						name: 'Pokémon Crystal Legacy (Legacy v1.3.0)',
+						name: 'Legacy - v1.3.0',
 						inputCrc32: CRC32_REV0,
 						inputMd5: MD5_REV0,
-						description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.',
+						description: 'Legacy patch for Pokémon Crystal (USA) to Pokémon Crystal Legacy v1.3.0.',
 						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.0) (${AUTHOR_NAME}) (Hack)`);}},
 						{
 						file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.1_Patch.ips',
-						name: 'Pokémon Crystal Legacy (Legacy v1.3.0) for Rev 1',
+						name: 'Legacy - v1.3.0 - for Rev 1',
 						inputCrc32: CRC32_REV1,
 						inputMd5: MD5_REV1,
-						description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
+						description: 'Legacy patch for Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy v1.3.0.',
 						outputName: function () {fetch(`${PATCH_NAME_CLEAN} (Rev v1.3.0) (${AUTHOR_NAME}) (Hack)`);}}
 					]
 				}
