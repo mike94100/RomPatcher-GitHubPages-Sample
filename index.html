@@ -33,10 +33,10 @@
 							const CRC32 = romFile.hashCRC32(); // Generate ROM file hash
 							// Load patch for Rev 0 if hash matches
 							if (CRC32 === CRC32_REV0)
-								RomPatcherWeb.pickEmbededFile('./patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip/Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps');
+								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps');
 							// Load patch for Rev 1 if hash matches
 							else if (CRC32 === CRC32_REV1)
-								RomPatcherWeb.pickEmbededFile('./patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip/Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps');
+								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps');
 						},
 						onvalidaterom: function (romFile, isRomValid) {
 							const CRC32 = romFile.hashCRC32();
@@ -46,21 +46,35 @@
 								RomPatcherWeb.setErrorMessage('This is an unknown ROM.');
 						}
 					}, {
-						file: './patches/Pokemon.Crystal.Legacy.V1.3.1.Patches.zip', // Path to .zip containing patches
+						file: 'patches.zip', // Path to .zip containing patches
 						patches: [{ // Info about patches contained in .zip
-							file: 'Version USA/Pokemon_Crystal_Legacy_USA_1.0_Patch.bps', // Required, must match the file path in the .zip
+							file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps', // Required, must match the file name in the .zip
 							name: 'Pokémon Crystal Legacy (Latest)', // Patch name that appears in dropdown
 							inputCrc32: 'ee6f5188', // CRC32 checksum validation
 							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde', // MD5 checksum validation
 							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.', // Description that appears when patch is selected
 							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'}, // Patched ROM file name
 							{
-							file: 'Version USA, Europe Rev 1/Pokemon_Crystal_Legacy_USA_1.1_Patch.bps',
+							file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps',
 							name: 'Pokémon Crystal Legacy (Latest) for Rev 1',
 							inputCrc32: '3358e30a',
 							inputMd5: '301899b8087289a6436b0a241fbbb474',
 							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
-							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'}
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'},
+							{
+							file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.0_Patch.bps',
+							name: 'Pokémon Crystal Legacy (Legacy v1.3.0)',
+							inputCrc32: 'ee6f5188',
+							inputMd5: '9f2922b235a5eeb78d65594e82ef5dde',
+							description: 'Patches Pokémon Crystal (USA) to Pokémon Crystal Legacy.',
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.0) (TheSmithPlays) (Hack)'},
+							{
+							file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.1_Patch.bps',
+							name: 'Pokémon Crystal Legacy (Legacy v1.3.0) for Rev 1',
+							inputCrc32: '3358e30a',
+							inputMd5: '301899b8087289a6436b0a241fbbb474',
+							description: 'Patches Pokémon Crystal (USA, Europe) (Rev 1) to Pokémon Crystal Legacy.',
+							outputName: 'Pokemon Crystal Legacy (Rev v1.3.0) (TheSmithPlays) (Hack)'}
 						]
 				}
 			);
@@ -107,6 +121,7 @@
 		<p>
 			Brief description of the ROM patch. [Pokémon Crystal Legacy is a rom hack of Pokémon Crystal ...]
 		</p>
+		<img style="max-width: 450px; max-height: 450px" src="images/cover.webp"/>
 	</header>
 
 
@@ -175,7 +190,7 @@
 <footer>
 	<div id="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
-				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS v3.2.1</a>
+				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
 	</div>
 	<div class="footer-link text-center">
 		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
