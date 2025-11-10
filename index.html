@@ -83,13 +83,13 @@
 			patchDownload.onclick = () => {
 				const selectedIndex = patchSelect.selectedIndex;
 				if (selectedIndex < 0) return;
-					const patch = patchInfo.patches[selectedIndex];
-					const link = document.createElement('a');
-					link.href = `./patches/${patch.file}`;
-					link.download = patch.file.split('/').pop();
-					document.body.appendChild(link);
-					link.click();
-					document.body.removeChild(link);
+				const patch = patchInfo.patches[selectedIndex];
+				const link = document.createElement('a');
+				link.href = `./patches/${patch.file}`;
+				link.download = patch.file.split('/').pop();
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
 			};
 				
 			} catch (err) {
