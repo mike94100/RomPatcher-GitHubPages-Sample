@@ -25,8 +25,8 @@
 			try {
 				RomPatcherWeb.initialize({
 					language: 'en', // English
-					requireValidation: true, // Allow applying patch if the ROM is invalid
-					allowDropFiles: true, // Allow basic drag and drop support
+					requireValidation: true, // If true - Disallow applying patch if the ROM is invalid
+					allowDropFiles: true, // If true - Allow drag and drop support
 					onloadrom: function (romFile) { // When new ROM file is loaded
 						const CRC32 = romFile.hashCRC32(); // Generate ROM file hash
 						// Load patch for Rev 0 if hash matches
@@ -38,9 +38,11 @@
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const CRC32 = romFile.hashCRC32();
-						if (!isRomValid && CRC32_INVALID.indexOf(CRC32) !== -1) // Error message for known invalid ROM hash
+						// If invalid ROM hash is known
+						if (!isRomValid && CRC32_INVALID.indexOf(CRC32) !== -1)
 							RomPatcherWeb.setErrorMessage('This is a known invalid ROM.');
-						else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1) // Error message for unknown ROM hash
+						// If invalid ROM hash is not known
+						else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1)
 							RomPatcherWeb.setErrorMessage('This is an unknown ROM.');
 					}
 				}, {
@@ -75,7 +77,23 @@
 						outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'}
 					]
 				}
-			);			
+			);
+			/* To-Do: Update to allow patch file downloads
+			const downloadBtn = document.getElementById('rom-patcher-button-download');
+			const patchSelect = document.getElementById('rom-patcher-select-patch');
+
+			downloadBtn.onclick = () => {
+				const selectedIndex = patchSelect.selectedIndex;
+				if (selectedIndex < 0) return;
+
+				const patch = patchInfo.patches[selectedIndex];
+				const link = document.createElement('a');
+				link.href = `./patches/${patch.file}`;
+				link.download = patch.file.split('/').pop();
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			}; */
 			} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
@@ -88,7 +106,7 @@
 	</script>
 </head>
 
-<!-- Use this to change web page display based on chosen patch file (or provided rom, etc) -->
+<!-- WIP: Use this to change web page display based on chosen patch file (or provided rom, etc) -->
 <!-- RomPatcher.initialize(
 	{
 		onloadpatch: function (patchFile, embededPatchInformation) {
@@ -103,7 +121,7 @@
 		}
 	}, -->
 
-<!-- Use setEmbededPatches to switch patches available. -->
+<!-- WIP: Use setEmbededPatches to switch patches available. -->
 <!-- RomPatcherWeb.setEmbededPatches({
 	file: 'other_patches.zip',
 	name: 'Other patches',
@@ -177,7 +195,7 @@
 			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
-			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch</button>
+			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch (wip)</button>
 		</div>
 			<br><font size="3"><strong>Recommended Emulators</strong></font>
 			<br>List Recommended Emulators.
@@ -191,12 +209,12 @@
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
 			src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
 	</div>
-	<!-- Patch Source -->
+	<!-- Patch Source - Required -->
 	<div class="footer-link text-center">
 		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
 				src="images/github-light.webp" loading="lazy" />cRz-Shadows/Pokemon_Crystal_Legacy</a>
 		</div><br><br>
-	<!-- Additional links & info -->
+	<!-- Additional links - Recommended -->
 	<div style="column-count: 3">
 		<div class="footer-link text-center">
 			<a href="https://github.com/mike94100/RomPatcher-GitHubPages-Sample" target="_blank"><img
@@ -225,6 +243,14 @@
 		<div class="footer-link text-center">
 			<a href="https://hasheous.org/index.html?page=dataobjectdetail&type=game&id=263015" target="_blank"><img
 					src="images/hasheous.webp" loading="lazy" />Hasheous</a>
+		</div>
+		<div class="footer-link text-center">
+			<a href="https://www.steamgriddb.com/game/5434164" target="_blank"><img
+					src="images/steamgriddb.webp" loading="lazy" />SteamGridDB</a>
+		</div>
+		<div class="footer-link text-center">
+			<a href="https://howlongtobeat.com/game/139746" target="_blank"><img
+					src="images/hltb.webp" loading="lazy" />HowLongToBeat</a>
 		</div>
 	</div>
 </footer>
