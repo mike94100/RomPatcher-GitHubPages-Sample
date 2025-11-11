@@ -1,6 +1,9 @@
 # Rom Patcher GitHub Pages Sample
 A sample using RomPatcherJS on GitHub Pages site with customizations.
 
+## Why
+Current patches are hosted across many different sites, forums, and Discord servers. The process for applying the patches, though currently fairly painless with the RomPatcherJS site, could be made much simpler for free with currently provided tools. This repo was made as a guide for setting up a free GitHub repo for distributing ROM patches using customized RomPatcherJS embedded into a GitHub Pages site, which is also how the current RomPatcherJS is setup. But by providing the patch files and customizing just a few files, you can make the process much faster and idiot<sup>tm</sup>-proof.
+
 ## How To Initialize
 - Clone repo
 - Upload patch files to ./patches/ (for downloads) and ./patches.zip (for patching) **NOTE: patches directory and patches.zip should be identical**
@@ -24,7 +27,11 @@ A sample using RomPatcherJS on GitHub Pages site with customizations.
 - Automatically selecting a patch file by the hash of the provided ROM file
 - Providing multiple patches in drop down
 - Providing a default output name for each patch (Recommended `Title (Rev vX.Y.Z) (Developer) (Hack)` because I name my files that way)
-- Links to other resources, some logos are provided
+- Display patch title, description, recommendations, and supporting resources
+
+## Issues & To-Do
+- Get Download Patch to work
+- Add a latestpatches.zip as default. Switch between latestpatches.zip and patches.zip with a button.  
 
 ## [Semantic Versioning](https://semver.org)
 - Versions are labeled as MAJOR.MINOR.PATCH (vX.Y.Z)
