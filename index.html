@@ -61,7 +61,7 @@
 					description: 'Legacy - (Rev 1) to v1.3.0',
 					outputName: 'Pokemon Crystal Legacy (Rev v1.3.0) (TheSmithPlays) (Hack)'}
 				]
-			}
+			};
 			try {
 				RomPatcherWeb.initialize( {
 					patcherSettings,
@@ -86,7 +86,7 @@
 							// If invalid ROM hash is not known
 							else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1)
 								RomPatcherWeb.setErrorMessage('The provided ROM is unknown and is unlikely to work.');
-					} },
+					}},
 					patchInfo
 				);
 				// Patch File Downloads
