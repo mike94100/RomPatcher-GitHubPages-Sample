@@ -2,7 +2,9 @@
 A sample using RomPatcherJS on GitHub Pages site with customizations.
 
 ## Why
-Current patches are hosted across many different sites, forums, and Discord servers. The process for applying the patches, though currently fairly painless with the RomPatcherJS site, could be made much simpler for free with currently provided tools. This repo was made as a guide for setting up a free GitHub repo for distributing ROM patches using customized RomPatcherJS embedded into a GitHub Pages site, which is also how the current RomPatcherJS is setup. But by providing the patch files and customizing just a few files, you can make the process much faster and idiot<sup>tm</sup>-proof.
+Current patches are hosted across many different sites, forums, and Discord servers. The process for applying the patches, though currently fairly painless with the RomPatcherJS site, could be made much simpler for free with currently provided tools.
+
+This repo was made as a guide for setting up a free GitHub repo for distributing ROM patches using customized RomPatcherJS embedded into a GitHub Pages site, which is also how the current RomPatcherJS is setup. But by providing the patch files yourself and customizing a few files, you can make the process much faster and idiot<sup>tm</sup>-proof.
 
 ## How To Initialize
 - Clone repo
