@@ -23,11 +23,11 @@
 				allowDropFiles: true // if true, allow drag and dropping files
 			};
 			// ROM Hash Info
-			const CRC32_REV0 = 0xee6f5188; // Pokemon Crystal (USA)
-			const MD5_REV0 = '9f2922b235a5eeb78d65594e82ef5dde'; // Pokemon Crystal (USA)
-			const CRC32_REV1 = 0x3358e30a; // Pokemon Crystal (USA) (Rev 1)
-			const MD5_REV1 = '301899b8087289a6436b0a241fbbb474'; // Pokemon Crystal (USA) (Rev 1)
-			const CRC32_INVALID = [0x270c4ecc, 0xbb6dd80c]; // Japan, Aus
+			const CRC32_REV0 = 0xee6f5188; // Valid CRC32 - Pokemon Crystal (USA)
+			const MD5_REV0 = '9f2922b235a5eeb78d65594e82ef5dde'; // Valid MD5 - Pokemon Crystal (USA)
+			const CRC32_REV1 = 0x3358e30a; // Valid CRC32 - Pokemon Crystal (USA) (Rev 1)
+			const MD5_REV1 = '301899b8087289a6436b0a241fbbb474'; // Valid MD5 - Pokemon Crystal (USA) (Rev 1)
+			const CRC32_INVALID = [0x270c4ecc, 0xbb6dd80c]; // Invalid for all patches - Japan, Aus
 			// Patch Info
 			const patchInfo = {
 				file: './patches.zip', // Path to .zip containing patches
@@ -75,31 +75,35 @@
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const CRC32 = romFile.hashCRC32();
-						// If invalid ROM hash is known
-						if (!isRomValid && CRC32_INVALID.indexOf(CRC32) !== -1)
-							RomPatcherWeb.setErrorMessage('This is a known invalid ROM.');
-						// If invalid ROM hash is not known
-						else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1)
-							RomPatcherWeb.setErrorMessage('This is an unknown ROM.');
+						if (!isRomValid) // If ROM is invalid
+							// If invalid ROM hash is known
+							if (CRC32_INVALID.indexOf(CRC32) !== -1)
+								RomPatcherWeb.setErrorMessage('The provided ROM is known to be invalid for all patches.');
+							// If wrong ROM revision is provided
+							else if (CRC32 === CRC32_REV0 || CRC32 == CRC32_REV1)
+								RomPatcherWeb.setErrorMessage('The wrong patch is selected for the provided ROM.');
+							// If invalid ROM hash is not known
+							else if (!isRomValid && CRC32_INVALID.indexOf(CRC32) === -1)
+								RomPatcherWeb.setErrorMessage('The provided ROM is unknown and is unlikely to work.');
 					} },
 					patchInfo
 				);
-			// Patch File Downloads
-			const downloadButton = document.getElementById('rom-patcher-button-download');
-			const patchSelect = document.getElementById('rom-patcher-select-patch');
+				// Patch File Downloads
+				const downloadButton = document.getElementById('rom-patcher-button-download');
+				const patchSelect = document.getElementById('rom-patcher-select-patch');
 
-			downloadButton.onclick = () => { // When download patch clicked
-				const selectedIndex = patchSelect.selectedIndex;
-				if (selectedIndex < 0) return; // Stop if patch not selected
+				downloadButton.onclick = () => {
+					const selectedIndex = patchSelect.selectedIndex;
+					if (selectedIndex < 0) return; // Stop if patch not selected
 
-				const patch = patchInfo.patches[selectedIndex]; // Match selected patch to patchInfo list
-				const link = document.createElement('a');
-				link.href = `./patches/${patch.file}`; // Get patch file path
-				link.download = patch.file.split('/').pop();
-				document.body.appendChild(link);
-				link.click();
-				document.body.removeChild(link);
-			};
+					const patch = patchInfo.patches[selectedIndex];
+					const link = document.createElement('a');
+					link.href = `./patches/${patch.file}`;
+					link.download = patch.file.split('/').pop();
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				};
 			} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
