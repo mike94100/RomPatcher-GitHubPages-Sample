@@ -34,6 +34,7 @@ This repo was made as a guide/sample for setting up a free GitHub repo for distr
 ## Issues & To-Do
 - Get Download Patch to work
 - Switch between a recommended patch set & legacy patch set.
+- Changing images/text based on the selected patch.
 
 ## [Semantic Versioning](https://semver.org)
 - Versions are labeled as MAJOR.MINOR.PATCH (vX.Y.Z)
