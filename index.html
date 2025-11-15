@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html translate="no">
 <head>
-	<!-- <title> will be displayed as the Tab title. Recommend PATCH_TITLE Patcher -->
-	<title>Rom Patcher JS - GitHub Pages Sample</title>
+	<title>Sample Embedded RomPatcherJS</title> <!-- Tab Title -->
+	<link rel="icon" href="./favicon.ico" type="image/x-icon"> <!-- Tab Icon -->
 	<meta charset="UTF-8" />
-	<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	
 	<!-- Rom Patcher JS needed CSS/JS files -->
@@ -90,10 +89,10 @@
 					patchInfo
 				);
 				// Patch File Downloads
-				const downloadButton = document.getElementById('rom-patcher-button-download');
+				const downloadBtn = document.getElementById('rom-patcher-button-download');
 				const patchSelect = document.getElementById('rom-patcher-select-patch');
 
-				downloadButton.onclick = () => {
+				downloadBtn.onclick = () => {
 					const selectedIndex = patchSelect.selectedIndex;
 					if (selectedIndex < 0) return; // Stop if patch not selected
 
@@ -134,13 +133,12 @@
 
 <body style="font: 15px 'Open Sans', sans-serif; background-color: #31343a; color: #e4e4e6;">
 	<header style="text-align: center">
-		<h1>ROM Patch Title Patcher [Pokémon Crystal Legacy]</h1>
-		<img style="max-width: 600px; max-height: 400px" src="./logo.webp"/>
+		<img id=logo-image src="./logo.webp" width ="50%" alt="Pokémon Crystal Legacy Logo" />
+		<h1>Sample Title [Pokémon Crystal Legacy]</h1>
 		<p>
-			Brief description of the ROM patch. [Pokémon Crystal Legacy is a rom hack of Pokémon Crystal ...]
+			Sample Description. [Pokémon Crystal Legacy is a rom hack of Pokémon Crystal ...]
 		</p>
 	</header>
-
 
 	<!-- Rom Patcher JS container -->
 	<!--
@@ -208,7 +206,7 @@
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
 			src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
 	</div>
-	<!-- Patch Source - Required -->
+	<!-- Patch Source - Strongly recommended -->
 	<div class="footer-link text-center">
 		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
 				src="logos/github-light.webp" loading="lazy" />cRz-Shadows/Pokemon_Crystal_Legacy</a>
