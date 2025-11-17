@@ -4,14 +4,14 @@ A sample using RomPatcherJS on GitHub Pages site with customizations.
 ## Why
 Current patches are hosted across many different sites, forums, and Discord servers. The process for applying the patches, though currently fairly painless with the RomPatcherJS site, can be much simpler for free with currently provided tools.
 
-This repo was made as a guide/sample for setting up a free GitHub repo for distributing ROM patches using RomPatcherJS embedded into a GitHub Pages site, which is also how the current RomPatcherJS site is setup. But by providing the patch files and customizing a few files, you can make the process much faster and idiot<sup>tm</sup>-proof while only ever requiring a single link. Using Crystal Legacy by TheSmithPlays as an example patch set.
+This repo was made as a guide/sample for setting up a free GitHub repo for distributing ROM patches using RomPatcherJS embedded into a GitHub Pages site, which is also how the current RomPatcherJS site is setup. But by providing the patch files and customizing a few files, you can make the process much faster and idiot<sup>tm</sup>-proof while only ever requiring a single link.
 
 ## Features
 - ROM file hash validation
 - Automatic patch file selection using ROM file hash
 - Support for multiple patches in a drop down
-- Custom output names per patch (Recommend `Title (Rev vX.Y.Z) (Developer) (Hack)` because I name my files that way)
-- Display patch title, logo, description, and supporting resources
+- Custom output names per patch
+- Display patch title, images, description, and supporting resources
 
 ## How To
 ### Initialize
@@ -27,9 +27,9 @@ This repo was made as a guide/sample for setting up a free GitHub repo for distr
 - Update index.html
 ### Patch
 - Upload your matching base ROM file
-- (Optional but Recommended) The patch for your ROM file hash will be selected automatically
+- Either select the patch for your ROM or the patch will be selected automatically
 - Click apply patch to download patched game
-- Click download patch to download the patch file (Does not work on this site yet)
+- Click download patch to download the patch file (tbd)
 
 ## Issues & To-Do
 - Get Download Patch to work
