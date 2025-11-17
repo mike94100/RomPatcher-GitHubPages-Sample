@@ -1,31 +1,30 @@
 name: Copy From RomPatcherJS
 
 on:
-  schedule:
-    - cron: '0 0 * * 0' # Trigger at 0:00 on Sundays
   workflow_dispatch: # Manual trigger
 
 jobs:
   copy-folder:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repo this action runs from
       - name: Checkout destination repo
         uses: actions/checkout@v4
         with:
           path: dest
-          
+      # Checkout RomPatcherJS repo    
       - name: Checkout source repo
         uses: actions/checkout@v4
         with:
           repository: 'marcrobledo/RomPatcher.js'
           path: source
-          
+      # Copy the rom-patcher-js directory & template html to this repo    
       - name: Copy the folder
         run: |
           # Update existing files and remove files no longer in the source
           rsync -av --delete source/rom-patcher-js/ dest/rom-patcher-js/
           rsync -av --delete source/index_template.html dest/index_template.html
-
+      # Create a pull request with the changes
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
