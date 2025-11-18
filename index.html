@@ -21,12 +21,14 @@
 			requireValidation: true, // If true, disallow invalid ROM
 			allowDropFiles: true // if true, allow drag and dropping files
 		};
+
 		// ROM Hash Info
 		const CRC32_REV0 = 0xee6f5188; // Valid CRC32 - Pokemon Crystal (USA)
 		const MD5_REV0 = '9f2922b235a5eeb78d65594e82ef5dde'; // Valid MD5 - Pokemon Crystal (USA)
 		const CRC32_REV1 = 0x3358e30a; // Valid CRC32 - Pokemon Crystal (USA) (Rev 1)
 		const MD5_REV1 = '301899b8087289a6436b0a241fbbb474'; // Valid MD5 - Pokemon Crystal (USA) (Rev 1)
 		const CRC32_INVALID = [0x270c4ecc, 0xbb6dd80c]; // Invalid for all patches - Japan, Aus
+
 		// Patch Info
 		const patchInfo = {
 			file: './patches.zip', // Path to .zip containing patches
@@ -68,6 +70,10 @@
 
 		window.addEventListener('load', function (evt) {
 			try {
+				// HTML Objects
+				const downloadBtn = document.getElementById('rom-patcher-button-download');
+				const patchSelect = document.getElementById('rom-patcher-select-patch');
+
 				RomPatcherWeb.initialize(
 					{
 						patcherSettings,
@@ -92,15 +98,20 @@
 								// If invalid ROM hash is not known
 								else if (CRC32_INVALID.indexOf(CRC32) === -1)
 									RomPatcherWeb.setErrorMessage('The provided ROM is unknown and is unlikely to work.');
+						},
+						onloadpatch: function (patchFile, embededPatchInformation) {
+							// If no patch is selected, disable Download Patch button
+							if (patchSelect.selectedIndex < 0)
+								downloadBtn.disabled = true;
+							// If patch is selected, enable Download Patch button
+							else
+								downloadBtn.disabled = false;
 						}
 					},
 					patchInfo
 				);
 				
 				// Patch Download
-				const downloadBtn = document.getElementById('rom-patcher-button-download');
-				const patchSelect = document.getElementById('rom-patcher-select-patch');
-
 				downloadBtn.onclick = () => {
 					const selectedIndex = patchSelect.selectedIndex;
 					if (selectedIndex < 0) return;
