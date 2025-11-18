@@ -4,6 +4,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300');
 
+/* Header */
+#header {
+	text-align: center;
+	padding: 15px;
+}
+
+#logo {
+	width: 35%;
+}
+
 /* Footer Links */
 .footer-link {
 	margin-top: 16px;
