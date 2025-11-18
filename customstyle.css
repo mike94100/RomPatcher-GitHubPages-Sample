@@ -26,6 +26,16 @@
     padding-bottom: 10px;
 }
 
+#auto-patch-info {
+    padding-bottom: 10px;
+}
+#auto-patch-enabled {
+    color: green
+}
+#auto-patch-disabled {
+    color: red
+}
+
 /* Footer Links */
 #footer-link-grid {
   	display: grid;
