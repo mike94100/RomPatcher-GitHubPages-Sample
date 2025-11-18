@@ -22,14 +22,14 @@
 			allowDropFiles: true // if true, allow drag and dropping files
 		};
 
-		// ROM Hash Info
+		// ROM Hashes
 		const CRC32_REV0 = 0xee6f5188; // Valid CRC32 - Pokemon Crystal (USA)
 		const MD5_REV0 = '9f2922b235a5eeb78d65594e82ef5dde'; // Valid MD5 - Pokemon Crystal (USA)
 		const CRC32_REV1 = 0x3358e30a; // Valid CRC32 - Pokemon Crystal (USA) (Rev 1)
 		const MD5_REV1 = '301899b8087289a6436b0a241fbbb474'; // Valid MD5 - Pokemon Crystal (USA) (Rev 1)
 		const CRC32_INVALID = [0x270c4ecc, 0xbb6dd80c]; // Invalid for all patches - Japan, Aus
 
-		// Patch Info
+		// Patches
 		const patchInfo = {
 			file: './patches.zip', // Path to .zip containing patches
 			patches: [ // Info about patches contained in .zip
@@ -70,7 +70,7 @@
 
 		window.addEventListener('load', function (evt) {
 			try {
-				// HTML Objects
+				// HTML Objects - Separate since only exists after load
 				const downloadBtn = document.getElementById('rom-patcher-button-download');
 				const patchSelect = document.getElementById('rom-patcher-select-patch');
 
@@ -141,9 +141,7 @@
 		<img id="logo" src="./logo.webp" alt="Logo for Pokémon Crystal Legacy" />
 		<h1>Sample Title [Pokémon Crystal Legacy]</h1>
 		<p>
-			Sample Description. [Pokémon Crystal Legacy is a rom hack of Pokémon Crystal ...<br>
-			Pokémon Crystal & Pokémon Crystal Rev 1 are supported.<br>
-			RomPatcherJS will verify that the file hashes match to ensure compatibility.]	
+			Sample Description. [Pokémon Crystal Legacy is a rom hack of Pokémon Crystal ...]
 		</p>
 	</header>
 
@@ -156,6 +154,13 @@
 		The rest of elements are informative and can be removed, though it's recommended to keep them for a better user experience.
 	-->
 	<div id="rom-patcher-container">
+		<!-- Base ROM file information -->
+		<span class="base-rom-info text-mono text-muted">
+			Base ROM: Pokémon Crystal & Pokémon Crystal Rev 1<br>
+			Automatic patch selection: Enabled
+		</span>
+
+		<!-- ROM file selection and hashes -->
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
 			<div class="text-right"><label for="rom-patcher-input-file-rom" data-localize="yes">ROM file:</label></div>
 			<div class="rom-patcher-container-input">
@@ -180,11 +185,8 @@
 				<div class="text-truncate"><span id="rom-patcher-span-rom-info"></span></div>
 			</div>
 		</div>
-
-		<div class="rom-patcher-row margin-bottom" id="row-patch-set">
-			<div class="text-right"><label for="selected-patch-set" data-localize="yes">Patch Set:</label></div>
-			<div class="text-truncate" id="selected-patch-set">[WIP]</div>
-		</div>		
+	
+		<!-- Patch file selection and information -->
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
 			<div class="text-right"><label for="rom-patcher-input-file-patch" data-localize="yes">Patch file:</label>
 			</div>
@@ -202,11 +204,12 @@
 			<div class="text-truncate" id="rom-patcher-patch-requirements-value"></div>
 		</div>
 
+		<!-- Patch actions -->
 		<div class="text-center" id="rom-patcher-row-apply">
 			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
-			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch [WIP]</button>
+			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch</button>
 		</div>
 	</div>
 <!-- FOOTER -->
