@@ -73,38 +73,34 @@
 				// HTML Objects - Separate since only exists after load
 				const downloadBtn = document.getElementById('rom-patcher-button-download');
 				const patchSelect = document.getElementById('rom-patcher-select-patch');
+				const autoPatch = document.getElementById('rom-patcher-auto-patch');
 
 				RomPatcherWeb.initialize(
 					{
 						patcherSettings,
 						onloadrom: function (romFile) { // When new ROM file is loaded
+							autoPatch.style.color = '#008000'; // Set auto patch color to green
+							autoPatch.textContent = 'Enabled'; // Set auto patch text to enabled
 							const CRC32 = romFile.hashCRC32(); // Generate ROM file hash
-							// Load patch for Rev 0 if hash matches
-							if (CRC32 === CRC32_REV0)
+							if (CRC32 === CRC32_REV0) // Load patch for Rev 0 if hash matches
 								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps');
-							// Load patch for Rev 1 if hash matches
-							else if (CRC32 === CRC32_REV1)
+							else if (CRC32 === CRC32_REV1) // Load patch for Rev 1 if hash matches
 								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps');
 						},
 						onvalidaterom: function (romFile, isRomValid) {
 							const CRC32 = romFile.hashCRC32();
 							if (!isRomValid) // If ROM is invalid
-								// If invalid ROM hash is known
-								if (CRC32_INVALID.indexOf(CRC32) !== -1)
+								if (CRC32_INVALID.indexOf(CRC32) !== -1) // If invalid ROM hash is known
 									RomPatcherWeb.setErrorMessage('The provided ROM is known to be invalid for all patches.');
-								// If wrong ROM revision is provided
-								else if (CRC32 === CRC32_REV0 || CRC32 === CRC32_REV1)
+								else if (CRC32 === CRC32_REV0 || CRC32 === CRC32_REV1) // If wrong ROM revision is provided
 									RomPatcherWeb.setErrorMessage('The wrong patch is selected for the provided ROM.');
-								// If invalid ROM hash is not known
-								else if (CRC32_INVALID.indexOf(CRC32) === -1)
+								else if (CRC32_INVALID.indexOf(CRC32) === -1) // If invalid ROM hash is not known
 									RomPatcherWeb.setErrorMessage('The provided ROM is unknown and is unlikely to work.');
 						},
 						onloadpatch: function (patchFile, embededPatchInformation) {
-							// If no patch is selected, disable Download Patch button
-							if (patchSelect.selectedIndex < 0)
+							if (patchSelect.selectedIndex < 0) // If no patch is selected, disable Download Patch button
 								downloadBtn.disabled = true;
-							// If patch is selected, enable Download Patch button
-							else
+							else // If patch is selected, enable Download Patch button
 								downloadBtn.disabled = false;
 						}
 					},
@@ -136,7 +132,7 @@
 	</script>
 </head>
 
-<body style="font: 15px 'Open Sans', sans-serif; background-color: #31343a; color: #e4e4e6;">
+<body id="body">
 	<header id="header">
 		<img id="logo" src="./logo.webp" alt="Logo for Pokémon Crystal Legacy" />
 		<h1>Sample Title [Pokémon Crystal Legacy]</h1>
@@ -155,10 +151,12 @@
 	-->
 	<div id="rom-patcher-container">
 		<!-- Base ROM file information -->
-		<span class="base-rom-info text-mono text-muted">
-			Base ROM: Pokémon Crystal & Pokémon Crystal Rev 1<br>
-			Automatic patch selection: Enabled
-		</span>
+		<div class="base-rom-info text-mono text-muted">
+			<div class="text-right"><label for="rom-patcher-base-rom" data-localize="yes">Base ROM:</label></div>
+			<div><span id="rom-patcher-base-rom">Pokémon Crystal & Pokémon Crystal Rev 1</span></div>
+			<div class="text-right"><label for="rom-patcher-auto-patch" data-localize="yes">Auto Patch Select:</label></div>
+			<div><span id="rom-patcher-auto-patch">Disabled</span></div>
+		</div>
 
 		<!-- ROM file selection and hashes -->
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">

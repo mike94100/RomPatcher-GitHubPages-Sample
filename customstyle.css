@@ -4,6 +4,13 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300');
 
+/* Body */
+#body {
+	font: 15px 'Open Sans', sans-serif;
+	background-color: #31343a;
+	color: #e4e4e6;
+}
+
 /* Header */
 #header {
 	text-align: center;
@@ -17,6 +24,10 @@
 /* Body */
 #base-rom-info {
     padding-bottom: 10px;
+}
+
+#rom-patcher-auto-patch {
+    color:red;
 }
 
 /* Footer Links */
