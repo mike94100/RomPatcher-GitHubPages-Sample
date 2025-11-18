@@ -29,10 +29,10 @@
 #auto-patch-info {
     padding-bottom: 10px;
 }
-#auto-patch-enabled {
+.auto-patch-enabled {
     color: green
 }
-#auto-patch-disabled {
+.auto-patch-disabled {
     color: red
 }
 
