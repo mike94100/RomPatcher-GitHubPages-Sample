@@ -79,8 +79,6 @@
 					{
 						patcherSettings,
 						onloadrom: function (romFile) { // When new ROM file is loaded
-							autoPatch.style.color = '#008000'; // Set auto patch color to green
-							autoPatch.textContent = 'Enabled'; // Set auto patch text to enabled
 							const CRC32 = romFile.hashCRC32(); // Generate ROM file hash
 							if (CRC32 === CRC32_REV0) // Load patch for Rev 0 if hash matches
 								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps');
@@ -152,10 +150,8 @@
 	<div id="rom-patcher-container">
 		<!-- Base ROM file information -->
 		<div class="base-rom-info text-mono text-muted">
-			<div class="text-right"><label for="rom-patcher-base-rom" data-localize="yes">Base ROM:</label></div>
-			<div><span id="rom-patcher-base-rom">Pokémon Crystal & Pokémon Crystal Rev 1</span></div>
-			<div class="text-right"><label for="rom-patcher-auto-patch" data-localize="yes">Auto Patch Select:</label></div>
-			<div><span id="rom-patcher-auto-patch">Disabled</span></div>
+			<span>Base ROM: <span id="rom-patcher-base-rom">Pokémon Crystal & Pokémon Crystal Rev 1</span></span>
+			<span>Auto Patch Select: <span id="rom-patcher-auto-patch" color="green">Enabled<!--color="red">Disabled--></span></span>
 		</div>
 
 		<!-- ROM file selection and hashes -->
