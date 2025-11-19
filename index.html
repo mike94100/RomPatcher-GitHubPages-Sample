@@ -90,11 +90,13 @@
 							const CRC32 = romFile.hashCRC32();
 							if (!isRomValid) // If ROM is invalid
 								if (CRC32_INVALID.indexOf(CRC32) !== -1) // If invalid ROM hash is known
-									RomPatcherWeb.setErrorMessage('The provided ROM is known to be invalid for all patches.');
-								else if (CRC32 === CRC32_REV0 || CRC32 === CRC32_REV1) // If wrong ROM revision is provided
-									RomPatcherWeb.setErrorMessage('The wrong patch is selected for the provided ROM.');
+									RomPatcherWeb.setErrorMessage('This ROM is known to be invalid for all provided patches.');
+								else if (CRC32 === CRC32_REV0) // If wrong ROM revision is provided
+									RomPatcherWeb.setErrorMessage('This ROM requires the Rev 0 patch.');
+								else if (CRC32 === CRC32_REV1) // If wrong ROM revision is provided
+									RomPatcherWeb.setErrorMessage('This ROM requires the Rev 1 patch.');
 								else if (CRC32_INVALID.indexOf(CRC32) === -1) // If invalid ROM hash is not known
-									RomPatcherWeb.setErrorMessage('The provided ROM is unknown and is unlikely to work.');
+									RomPatcherWeb.setErrorMessage('This ROM is unknown and is likely invalid for all provided patches.');
 						},
 						onloadpatch: function (patchFile, embededPatchInformation) {
 							if (patchSelect.selectedIndex < 0) // If no patch is selected, disable Download Patch button
@@ -161,6 +163,7 @@
 			<span>Base ROM: <span id="base-rom">Pokémon Crystal & Pokémon Crystal Rev 1</span></span>
 		</div>
 		<div id="auto-patch-info" class="text-mono text-muted">
+			<!-- Do not edit if enabled, set "autoPatchSelectEnabled = true" instead -->
 			<span>Auto Patch Select: <span id="auto-patch" class="auto-patch-disabled">Disabled</span></span>
 		</div>
 
@@ -192,7 +195,7 @@
 	
 		<!-- Patch file selection and information -->
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
-			<div class="text-right"><label for="rom-patcher-input-file-patch" data-localize="yes">Patch file:</label>
+			<div class="text-right"><label for="rom-patcher-select-patch" data-localize="yes">Patch file:</label>
 			</div>
 			<div class="rom-patcher-container-input">
 				<select id="rom-patcher-select-patch"></select>
