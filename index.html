@@ -19,8 +19,9 @@
 		const patcherSettings = {
 			language: 'en',
 			requireValidation: true, // If true, disallow invalid ROM
-			allowDropFiles: true // if true, allow drag and dropping files
+			allowDropFiles: true // If true, allow drag and dropping files
 		};
+		const autoPatchSelectEnabled = true // Only set to true if you have implemented automatic patch selection, generally using onLoadRom -> pickEmbededFile. Default is false.
 
 		// ROM Hashes
 		const CRC32_REV0 = 0xee6f5188; // Valid CRC32 - Pokemon Crystal (USA)
@@ -73,7 +74,7 @@
 				// HTML Objects - Separate since only exists after load
 				const downloadBtn = document.getElementById('rom-patcher-button-download');
 				const patchSelect = document.getElementById('rom-patcher-select-patch');
-				const autoPatch = document.getElementById('rom-patcher-auto-patch');
+				const autoPatch = document.getElementById('auto-patch');
 
 				RomPatcherWeb.initialize(
 					{
@@ -118,6 +119,13 @@
 					link.click();
 					document.body.removeChild(link);
 				};
+
+				// Update automatic patch selection text if enabled
+				if (autoPatchSelectEnabled) {
+					autoPatch.classList.add('auto-patch-enabled');
+					autoPatch.classList.remove('auto-patch-disabled');
+					autoPatch.textContent="Enabled";
+				}
 			} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
@@ -153,7 +161,7 @@
 			<span>Base ROM: <span id="base-rom">Pokémon Crystal & Pokémon Crystal Rev 1</span></span>
 		</div>
 		<div id="auto-patch-info" class="text-mono text-muted">
-			<span>Auto Patch Select: <span id="auto-patch" class="auto-patch-enabled">Enabled<!--class="auto-patch-disabled">Disabled--></span></span>
+			<span>Auto Patch Select: <span id="auto-patch" class="auto-patch-disabled">Disabled</span></span>
 		</div>
 
 		<!-- ROM file selection and hashes -->
