@@ -1,0 +1,18 @@
+/* Rosé Pine Moon - https://rosepinetheme.com/palette/ingredients/ */
+:root {
+	--base: hsl(246deg, 24%, 17%);
+	--surface: hsl(248deg, 24%, 20%);
+	--overlay: hsl(248deg, 21%, 26%);
+    --muted: hsl(249deg, 12%, 47%);
+    --subtle: hsl(248deg, 15%, 61%);
+    --text: hsl(245deg, 50%, 91%);
+    --love: hsl(343deg, 76%, 68%);
+    --gold: hsl(35deg, 88%, 72%);
+    --rose: hsl(2deg, 66%, 75%);
+    --pine: hsl(197deg, 48%, 47%);
+    --foam: hsl(189deg, 43%, 73%);
+    --iris: hsl(267deg, 57%, 78%);
+    --highlight-low: hsl(245deg, 22%, 20%);
+    --highlight-med: hsl(247deg, 16%, 30%);
+    --highlight-high: hsl(249deg, 15%, 38%);
+}

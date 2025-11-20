@@ -1,0 +1,23 @@
+/* Nord - https://www.nordtheme.com/docs/colors-and-palettes*/
+:root {
+    /* Polar Night */
+	--nord0: hsl(220deg, 16.36%, 21.57%); /* Dark - background | Light - text */
+    --nord1: hsl(221.74deg, 16.31%, 27.65%); /* Dark - elevated UI | Light - subtle UI */
+    --nord2: hsl(220deg, 16.77%, 31.57%); /* Dark - selection highlight | Light -  */
+    --nord3: hsl(220deg, 16.48%, 35.69%); /* Dark -  | Light - subtle text*/
+    /* Snow Storm */
+    --nord4: hsl(218.82deg, 27.87%, 88.04%); /* Dark -  | Light - elevated UI */
+    --nord5: hsl(218.18deg, 26.83%, 91.96%); /* Dark - subtle text | Light - selection highlight */
+    --nord6: hsl(217.5deg, 26.67%, 94.12%); /* Dark - text | Light - background */
+    /* Frost */
+    --nord7: hsl(178.67deg, 25.14%, 64.9%);
+    --nord8: hsl(193.33deg, 43.37%, 67.45%); /* Primary */
+    --nord9: hsl(210deg, 34.04%, 63.14%); /* Secondary */
+    --nord10: hsl(213.08deg, 31.97%, 52.16%); /* Tertiary */
+    /* Aurora */
+    --nord11: hsl(354.26deg, 42.34%, 56.47%); /* Error states */
+    --nord12: hsl(14.38deg, 50.53%, 62.75%);
+    --nord13: hsl(40deg, 70.59%, 73.33%); /* Warning states */
+    --nord14: hsl(92.4deg, 27.78%, 64.71%); /* Success states */
+    --nord15: hsl(311.05deg, 20.21%, 63.14%);
+}

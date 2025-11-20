@@ -1,0 +1,18 @@
+/* Rosé Pine - https://rosepinetheme.com/palette/ingredients/ */
+:root {
+	--base: hsl(249deg, 22%, 12%);
+	--surface: hsl(247deg, 23%, 15%);
+	--overlay: hsl(248deg, 25%, 18%);
+    --muted: hsl(249deg, 12%, 47%);
+    --subtle: hsl(248deg, 15%, 61%);
+    --text: hsl(245deg, 50%, 91%);
+    --love: hsl(343deg, 76%, 68%);
+    --gold: hsl(35deg, 88%, 72%);
+    --rose: hsl(2deg, 55%, 83%);
+    --pine: hsl(197deg, 49%, 38%);
+    --foam: hsl(189deg, 43%, 73%);
+    --iris: hsl(300, 57%, 78%);
+    --highlight-low: hsl(244deg, 18%, 15%);
+    --highlight-med: hsl(249deg, 15%, 28%);
+    --highlight-high: hsl(248deg, 13%, 36%);
+}
