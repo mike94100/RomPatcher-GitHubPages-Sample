@@ -38,6 +38,6 @@
 	--color-accent: var(--mauve);
 
 	/* Auxiliary Colors */
-	--color-positive-patcher: var(--green);
-	--color-negative-patcher: var(--red);
+	--color-positive: var(--green);
+	--color-negative: var(--red);
 }
