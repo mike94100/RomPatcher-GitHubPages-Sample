@@ -94,7 +94,7 @@
 
 #rom-patcher-container button:not(:disabled):active {
 	background-color: var(--color-accent);
-	color: var(--color-text-2);
+	color: var(--color-text2);
 	transform: translateY(0px);
 }
 
