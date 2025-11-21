@@ -36,10 +36,10 @@
     padding-bottom: 10px;
 }
 .auto-patch-enabled {
-    color: var(--color-positive)
+    color: var(--color-positive);
 }
 .auto-patch-disabled {
-    color: var(--color-negative)
+    color: var(--color-negative);
 }
 
 /* Rom Patcher JS */
