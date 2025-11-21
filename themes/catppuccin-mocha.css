@@ -1,5 +1,6 @@
 /* Catppuccin Mocha - https://catppuccin.com/palette/ */
 :root {
+	/* Mocha */
 	--rosewater: hsl(10deg, 56%, 91%);
 	--flamingo: hsl(0deg, 59%, 88%);
 	--pink: hsl(316deg, 72%, 86%);
@@ -26,4 +27,17 @@
 	--base: hsl(240deg, 21%, 15%);
 	--mantle: hsl(240deg, 21%, 12%);
 	--crust: hsl(240deg, 23%, 9%);
+
+	/* Main Colors */
+	--color-bg: var(--base);
+	--color-bg2: var(--text);
+	--color-text: var(--text);
+	--color-text2: var(--crust);
+	--color-subtext: var(--subtext0);
+	--color-text-muted: var(--overlay1);
+	--color-accent: var(--mauve);
+
+	/* Auxiliary Colors */
+	--color-positive-patcher: var(--green);
+	--color-negative-patcher: var(--red);
 }
