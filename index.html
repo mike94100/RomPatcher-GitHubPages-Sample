@@ -21,50 +21,24 @@
 			requireValidation: true, // If true, disallow invalid ROM
 			allowDropFiles: true // If true, allow drag and dropping files
 		};
-		const autoPatchSelectEnabled = true // Only set to true if you have implemented automatic patch selection, generally using onLoadRom -> pickEmbededFile. Default is false.
+		const autoPatchSelectEnabled = false // Only set to true if you have implemented automatic patch selection, generally using onLoadRom -> pickEmbededFile. Default is false.
 
 		// ROM Hashes
-		const CRC32_REV0 = 0xee6f5188; // Valid CRC32 - Pokemon Crystal (USA)
-		const MD5_REV0 = '9f2922b235a5eeb78d65594e82ef5dde'; // Valid MD5 - Pokemon Crystal (USA)
-		const CRC32_REV1 = 0x3358e30a; // Valid CRC32 - Pokemon Crystal (USA) (Rev 1)
-		const MD5_REV1 = '301899b8087289a6436b0a241fbbb474'; // Valid MD5 - Pokemon Crystal (USA) (Rev 1)
-		const CRC32_INVALID = [0x270c4ecc, 0xbb6dd80c]; // Invalid for all patches - Japan, Aus
+		const CRC32_VALID = X; // Valid CRC32
+		const MD5_VALID = 'X'; // Valid MD5
+		const CRC32_INVALID = Y; // Invalid CRC32
 
 		// Patches
 		const patchInfo = {
 			file: './patches.zip', // Path to .zip containing patches
 			patches: [ // Info about patches contained in .zip
 				{
-					file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps', // Required, must match the file name in the .zip
-					name: '(Latest) Pokémon Crystal Legacy (v1.3.1) Patch for Rev 0', // Patch name that appears in dropdown
-					inputCrc32: CRC32_REV0, // CRC32 checksum validation
-					inputMd5: MD5_REV0, // MD5 checksum validation
-					description: '(Rev 0) to v1.3.1', // Description that appears when patch is selected
-					outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)' // Patched ROM file name
-				},
-				{
-					file: 'Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps',
-					name: '(Latest) Pokémon Crystal Legacy (v1.3.1) Patch for Rev 1',
-					inputCrc32: CRC32_REV1,
-					inputMd5: MD5_REV1,
-					description: '(Rev 1) to v1.3.1',
-					outputName: 'Pokemon Crystal Legacy (Rev v1.3.1) (TheSmithPlays) (Hack)'
-				},
-				{
-					file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.0_Patch.ips',
-					name: 'Pokémon Crystal Legacy (v1.3.0) Patch for Rev 0',
-					inputCrc32: CRC32_REV0,
-					inputMd5: MD5_REV0,
-					description: '(Rev 0) to v1.3.0',
-					outputName: 'Pokemon Crystal Legacy (Rev v1.3.0) (TheSmithPlays) (Hack)'
-				},
-				{
-					file: 'Pokemon_Crystal_Legacy_v1.3.0_USA_1.1_Patch.ips',
-					name: 'Pokémon Crystal Legacy (v1.3.0) Patch for Rev 1',
-					inputCrc32: CRC32_REV1,
-					inputMd5: MD5_REV1,
-					description: '(Rev 1) to v1.3.0',
-					outputName: 'Pokemon Crystal Legacy (Rev v1.3.0) (TheSmithPlays) (Hack)'
+					file: 'X.bps', // Required, must match the file name in the .zip
+					name: 'X', // Patch name that appears in dropdown
+					inputCrc32: CRC32_VALID, // CRC32 checksum validation
+					inputMd5: MD5_VALID, // MD5 checksum validation
+					description: 'Y', // Description that appears when patch is selected
+					outputName: 'Generic Test.xyz' // Patched ROM file name
 				}
 			]
 		};
@@ -81,20 +55,14 @@
 						patcherSettings,
 						onloadrom: function (romFile) { // When new ROM file is loaded
 							const CRC32 = romFile.hashCRC32(); // Generate ROM file hash
-							if (CRC32 === CRC32_REV0) // Load patch for Rev 0 if hash matches
-								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.0_Patch.bps');
-							else if (CRC32 === CRC32_REV1) // Load patch for Rev 1 if hash matches
-								RomPatcherWeb.pickEmbededFile('Pokemon_Crystal_Legacy_v1.3.1_USA_1.1_Patch.bps');
+							if (CRC32 === CRC32_VALID) // Load matching patch for hash
+								RomPatcherWeb.pickEmbededFile('X.bps');
 						},
 						onvalidaterom: function (romFile, isRomValid) {
 							const CRC32 = romFile.hashCRC32();
 							if (!isRomValid) // If ROM is invalid
 								if (CRC32_INVALID.indexOf(CRC32) !== -1) // If invalid ROM hash is known
 									RomPatcherWeb.setErrorMessage('This ROM is known to be invalid for all provided patches.');
-								else if (CRC32 === CRC32_REV0) // If wrong ROM revision is provided
-									RomPatcherWeb.setErrorMessage('This ROM requires the Rev 0 patch.');
-								else if (CRC32 === CRC32_REV1) // If wrong ROM revision is provided
-									RomPatcherWeb.setErrorMessage('This ROM requires the Rev 1 patch.');
 								else if (CRC32_INVALID.indexOf(CRC32) === -1) // If invalid ROM hash is not known
 									RomPatcherWeb.setErrorMessage('This ROM is unknown and is likely invalid for all provided patches.');
 						},
@@ -143,9 +111,9 @@
 <body id="body">
 	<header id="header">
 		<img id="logo" src="./logo.webp" alt="Logo for Pokémon Crystal Legacy" />
-		<h1>Sample Title [Pokémon Crystal Legacy]</h1>
+		<h1>Sample Title</h1>
 		<p id="description">
-			Sample Description. [Pokémon Crystal Legacy is a rom hack of Pokémon Crystal ...]
+			Sample Description.
 		</p>
 	</header>
 
@@ -160,7 +128,7 @@
 	<div id="rom-patcher-container">
 		<!-- Additional information -->
 		<div id="base-rom-info" class="text-mono text-muted">
-			<span>Base ROM: <span id="base-rom">Pokémon Crystal or Pokémon Crystal Rev 1</span></span>
+			<span>Base ROM: <span id="base-rom"></span></span>
 		</div>
 		<div id="auto-patch-info" class="text-mono text-muted">
 			<!-- Do not edit if enabled, set "autoPatchSelectEnabled = true" instead -->
@@ -228,49 +196,45 @@
 	</div>
 	<!-- Patch Source - Strongly recommended -->
 	<div class="footer-link">
-		<a href="https://github.com/cRz-Shadows/Pokemon_Crystal_Legacy" target="_blank"><img
-				src="logos/github-light.webp" loading="lazy" />cRz-Shadows/Pokemon_Crystal_Legacy</a>
+		<a href="https://github.com" target="_blank"><img
+				src="logos/github-light.webp" loading="lazy" />GitHub</a>
 		</div><br>
 	<!-- Additional links - Recommended -->
 	<div id="footer-link-grid">
 		<div class="footer-link">
-			<a href="https://github.com/mike94100/RomPatcher-GitHubPages-Sample" target="_blank"><img
-				src="logos/github-light.webp" loading="lazy" />mike94100/RomPatcher-GitHubPages-Sample</a>
+			<a href="https://www.reddit.com" target="_blank"><img
+					src="logos/reddit.webp" loading="lazy" />Reddit</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://www.reddit.com/r/PokemonROMhacks/" target="_blank"><img
-					src="logos/reddit.webp" loading="lazy" />r/PokemonROMhacks</a>
-		</div>
-		<div class="footer-link">
-			<a href="https://discord.gg/Wupx8tHRVS" target="_blank"><img
+			<a href="https://discord.gg" target="_blank"><img
 					src="logos/discord.webp" loading="lazy" />Discord</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://www.pokecommunity.com/forums/rom-hacks-showcase.184/" target="_blank"><img
+			<a href="https://www.pokecommunity.com" target="_blank"><img
 					src="logos/pokecommunity.webp" loading="lazy" />Pokécommunity</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://www.igdb.com/games/pokemon-crystal-legacy" target="_blank"><img
+			<a href="https://www.igdb.com" target="_blank"><img
 					src="logos/igdb.webp" loading="lazy" />IGDB</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://retroachievements.org/game/31952" target="_blank"><img
+			<a href="https://retroachievements.org" target="_blank"><img
 					src="logos/retroachievements.webp" loading="lazy" />Retroachievements</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://hasheous.org/index.html?page=dataobjectdetail&type=game&id=263015" target="_blank"><img
+			<a href="https://hasheous.org" target="_blank"><img
 					src="logos/hasheous.webp" loading="lazy" />Hasheous</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://www.steamgriddb.com/game/5434164" target="_blank"><img
+			<a href="https://www.steamgriddb.com" target="_blank"><img
 					src="logos/steamgriddb.webp" loading="lazy" />SteamGridDB</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://howlongtobeat.com/game/139746" target="_blank"><img
+			<a href="https://howlongtobeat.com" target="_blank"><img
 					src="logos/hltb.webp" loading="lazy" />HowLongToBeat</a>
 		</div>
 		<div class="footer-link">
-			<a href="https://www.screenscraper.fr/gameinfos.php?plateforme=10&gameid=493157" target="_blank"><img
+			<a href="https://www.screenscraper.fr" target="_blank"><img
 					src="logos/screenscraper.webp" loading="lazy" />Screenscraper</a>
 		</div>
 	</div>
