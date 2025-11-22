@@ -24,8 +24,8 @@
 }
 
 #logo {
-	max-width: 640px;
-	margin: 0 auto;
+  	max-width: 640px;
+  	padding: 15px 15px;
 }
 
 /* Body */
