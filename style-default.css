@@ -15,10 +15,12 @@
 #header {
 	text-align: center;
 	padding: 15px;
+	max-width: 800px;
 }
 
-#logo {
-	max-width: 640px;
+#header #logo {
+  	width: 100%;
+	height: auto;
 }
 
 /* Body */

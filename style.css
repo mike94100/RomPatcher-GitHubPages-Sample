@@ -17,16 +17,16 @@
 #header {
 	text-align: center;
 	padding: 15px;
+	max-width: 800px;
 }
 
 #header #description {
 	color: var(--color-subtext);
 }
 
-#logo {
-  	max-width: 640px;
+#header #logo {
+  	width: 100%;
 	height: auto;
-  	padding: 15px 15px;
 }
 
 /* Body */
