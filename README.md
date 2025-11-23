@@ -25,6 +25,7 @@ Currently patches are hosted across many different sites, forums, or Discord ser
 ### Initialize
 - Clone repo
 - Upload patch file(s) as patches.zip
+  - Recommend saving latest patch(es) in .zip root and legacy patch(es) in /legacy. See this [RomPatcherJS issue](https://github.com/marcrobledo/RomPatcher.js/issues/67).
 - Update index.html as required
 - Setup GitHub Pages & distribute link
 ### Update
