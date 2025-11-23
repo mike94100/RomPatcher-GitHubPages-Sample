@@ -11,7 +11,8 @@
 	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
 	
 	<!-- Custom CSS-->
-	<link type="text/css" id="themeStyleSheet" rel="stylesheet" href="style.css" media="all" />
+	<link type="text/css" id="customTheme" rel="stylesheet" href="style.css" media="all" />
+	<link type="text/css" id="defaultTheme" rel="stylesheet" href="style-default.css" media="all" disabled />
 	
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
@@ -21,7 +22,6 @@
 			requireValidation: true, // If true, disallow invalid ROM
 			allowDropFiles: true // If true, allow drag and dropping files
 		};
-		const autoPatchSelectEnabled = true // Only set to true if you have implemented automatic patch selection, generally using onLoadRom -> pickEmbededFile. Default is false.
 
 		// ROM Hashes
 		const CRC32_REV0 = 0xee6f5188; // Valid CRC32 - Pokemon Crystal (USA)
@@ -74,7 +74,6 @@
 				// HTML Objects - Separate since only exists after load
 				const downloadBtn = document.getElementById('rom-patcher-button-download');
 				const patchSelect = document.getElementById('rom-patcher-select-patch');
-				const autoPatch = document.getElementById('auto-patch');
 				const themeBtn = document.getElementById('button-theme-switch');
 
 				RomPatcherWeb.initialize(
@@ -123,24 +122,19 @@
 					document.body.removeChild(link);
 				};
 
-				// Update automatic patch selection text if enabled
-				if (autoPatchSelectEnabled) {
-					autoPatch.classList.add('auto-patch-enabled');
-					autoPatch.classList.remove('auto-patch-disabled');
-					autoPatch.textContent="Enabled";
-				}
-
 				// Theme Switch
 				themeBtn.onclick = () => {
-					const theme = document.getElementById('themeStyleSheet');
-					if (theme.href === 'style.css') {
-						theme.href = 'style-default.css';
+					const themeC = document.getElementById('customTheme');
+					const themeD = document.getElementById('defaultTheme');
+					const themeCEnabled = themeC.disabled === false;
+					themeC.disabled = themeCEnabled;
+					themeD.disabled = !themeCEnabled;
+					if (themeCEnabled)
 						themeBtn.textContent = 'Use custom theme';
-					} else {
-						theme.href = 'style.css';
+					else
 						themeBtn.textContent = 'Use default theme';
-					}
 				};
+
 			} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
@@ -173,11 +167,12 @@
 	<div id="rom-patcher-container">
 		<!-- Additional information -->
 		<div id="base-rom-info" class="text-mono text-muted">
+			<!-- Plain text for expected base rom for patch, should not include the hash -->
 			<span>Base ROM: <span id="base-rom">Pokémon Crystal or Pokémon Crystal Rev 1</span></span>
 		</div>
 		<div id="auto-patch-info" class="text-mono text-muted">
-			<!-- Do not edit if enabled, set "autoPatchSelectEnabled = true" instead -->
-			<span>Auto Patch Select: <span id="auto-patch" class="auto-patch-disabled">Disabled</span></span>
+			<!-- <span>Auto Patch Select: <span id="auto-patch" class="auto-patch-disabled">Disabled</span></span> -->
+			<span>Auto Patch Select: <span id="auto-patch" class="auto-patch-enabled">Enabled</span></span>
 		</div>
 
 		<!-- ROM file selection and hashes -->
@@ -230,7 +225,7 @@
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch</button>
-			<button id="button-theme-switch" data-localize="yes" disabled>Use default theme</button>
+			<button id="button-theme-switch" data-localize="yes">Use default theme</button>
 		</div>
 	</div>
 <!-- FOOTER -->
