@@ -10,9 +10,9 @@ Currently patches are hosted across many different sites, forums, or Discord ser
 | Open link to patch file | Open link to patcher site |
 | Download patch file | |
 | Open RomPatcherJS site | |
-| Navigate to & upload base ROM file | <- |
+| Navigate to & upload base ROM file | &larr; |
 | Navigate to & upload patch file | |
-| Download patched ROM file | <- |
+| Download patched ROM file | &larr; |
 | Rename patched ROM file | |
 
 ### Features over standard RomPatcherJS site
