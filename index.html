@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
 	
 	<!-- Custom CSS-->
-	<link type="text/css" rel="stylesheet" href="style.css" media="all" />
+	<link type="text/css" id="themeStyleSheet" rel="stylesheet" href="style.css" media="all" />
 	
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
@@ -75,6 +75,7 @@
 				const downloadBtn = document.getElementById('rom-patcher-button-download');
 				const patchSelect = document.getElementById('rom-patcher-select-patch');
 				const autoPatch = document.getElementById('auto-patch');
+				const themeBtn = document.getElementById('button-theme-switch');
 
 				RomPatcherWeb.initialize(
 					{
@@ -128,6 +129,18 @@
 					autoPatch.classList.remove('auto-patch-disabled');
 					autoPatch.textContent="Enabled";
 				}
+
+				// Theme Switch
+				themeBtn.onclick = () => {
+					const theme = document.getElementById('themeStyleSheet');
+					if (theme.href === 'style.css') {
+						theme.href = 'style-default.css';
+						themeBtn.textContent = 'Use custom theme';
+					} else {
+						theme.href = 'style.css';
+						themeBtn.textContent = 'Use default theme';
+					}
+				};
 			} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
@@ -217,6 +230,7 @@
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 			<button id="rom-patcher-button-download" data-localize="yes" disabled>Download patch</button>
+			<button id="button-theme-switch" data-localize="yes" disabled>Use default theme</button>
 		</div>
 	</div>
 <!-- FOOTER -->
