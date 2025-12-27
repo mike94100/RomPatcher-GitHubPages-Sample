@@ -4,6 +4,8 @@ A sample using RomPatcherJS on GitHub Pages site with customizations.
 ## Why
 Currently patches are hosted across many different sites, forums, or Discord servers. The process for applying the patches can be made simpler at no cost and minimal prior knownledge. This repo was made as a guide & sample for using GitHub, GitHub Pages, and RomPatcherJS to distribute patches (same as the main RomPatcherJS site).
 
+With the release of the Pokemon Rom Hack [Hackdex](https://www.hackdex.app), I would recommend using that to release your Pokemon hacks. Though it may still be worth using GitHub or similar to release/store the patch files in case the site goes down for any reason. Or you like the ability to control the site yourself.
+
 ### Patching Differences
 | Standard | Embedded |
 | --- | ---|
